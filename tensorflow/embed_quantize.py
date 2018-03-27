@@ -16,8 +16,8 @@ tf.flags.DEFINE_float('lr', 0.0001, "Learning rate.")
 tf.flags.DEFINE_integer('max_epochs', 300, 'number of full passes through the training data')
 tf.flags.DEFINE_integer('print_every', 50, 'how often to print current loss')
 
-tf.flags.DEFINE_string('matrix', "data/glove.42B.300d.npy", "input")
-tf.flags.DEFINE_string('qmats', "data/glove.42B.300d.quan.npy", "output")
+tf.flags.DEFINE_string('matrix', "data/glove.6B.300d.npy", "input")
+tf.flags.DEFINE_string('qmats', "data/glove.6B.300d.quant.npy", "output")
 tf.flags.DEFINE_integer('n_word', 50000, 'number of words to compress, 0 for all')
 FLAGS = tf.flags.FLAGS
 

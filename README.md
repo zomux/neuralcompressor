@@ -18,7 +18,20 @@ Please do not hesitate to mail me for help.
 
 Raphael Shu, 2018.3
 
-### Usage
+### Example of usage
+
+1. Download glove data
+
+```
+cd neuralcompressor
+bash scripts/download_glove_data.sh
+```
+
+2. Quantize embedding matrix
+
+```
+python tensorflow/embed_quantize.py
+```
 
 To be done
 
