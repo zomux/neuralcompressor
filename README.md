@@ -60,8 +60,8 @@ Mean euclidean distance: 4.889592628145218
 ```
 
 It will generate two files:
-1. data/mymodel.codes
-2. data/mymodel.codebook.npy
+- data/mymodel.codes
+- data/mymodel.codebook.npy
 
 6. Check the codes
 
