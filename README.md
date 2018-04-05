@@ -97,7 +97,7 @@ distance = compressor.evaluate(matrix)
 print("Mean euclidean distance:", distance)
 
 # Export the codes and codebook
-compressor.export(matrix, args.model)
+compressor.export(matrix, "data/mymodel")
 ```
 
 ### Citation
