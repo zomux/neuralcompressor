@@ -24,7 +24,7 @@ numpy and tensorflow (I also have the pytorch implementation, which will be uplo
 > bash scripts/download_glove_data.sh
 ```
 
-2. Convery the Glove embeddings to numpy format
+2. Convert the Glove embeddings to numpy format
 
 ```
 > python scripts/convert_glove2numpy.py data/glove.6B.300d.txt
