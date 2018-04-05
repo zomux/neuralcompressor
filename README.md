@@ -10,6 +10,10 @@ Please do not hesitate to mail me for help.
 
 `mail_address = "raph_ael@ua_ca.com".replace("_", "")`
 
+### Requirements:
+
+numpy and tensorflow (I also have the pytorch implementation, which will be uploaded)
+
 ### Tutorial of the code
 
 1. Download the project and prepare the data
