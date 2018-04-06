@@ -6,7 +6,13 @@ import time
 import math
 import tensorflow as tf
 import numpy as np
-from tensorflow.python.ops.rnn_cell_impl import _linear
+# Import _linear
+if tuple(map(int, tf.__version__.split("."))) >= (1, 6, 0):
+    from tensorflow.contrib.rnn.python.ops import core_rnn_cell
+    _linear = core_rnn_cell._linear
+else:
+    from tensorflow.python.ops.rnn_cell_impl import _linear
+
 
 
 tf.flags.DEFINE_string('qmats', "data/glove.6B.300d.quant.npy", "output")
@@ -14,7 +20,7 @@ tf.flags.DEFINE_string('qmats', "data/glove.6B.300d.quant.npy", "output")
 
 class EmbeddingCompressor(object):
 
-    _TAU = 0.1
+    _TAU = 1.0
     _BATCH_SIZE = 64
 
     def __init__(self, n_codebooks, n_centroids, model_path):
