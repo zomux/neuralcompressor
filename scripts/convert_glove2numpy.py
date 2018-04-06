@@ -19,7 +19,7 @@ if __name__ == '__main__':
     for i, line in enumerate(lines):
         parts = line.strip().split()
         word = parts[0]
-        vec = np.array(map(float, parts[1:]), dtype='float32')
+        vec = np.array(parts[1:], dtype='float32')
         embed_matrix[i] = vec
         f_wordout.write(word + "\n")
     np.save(embed_path, embed_matrix)
