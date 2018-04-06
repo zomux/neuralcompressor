@@ -8,10 +8,6 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.python.ops.rnn_cell_impl import _linear
 
-
-tf.flags.DEFINE_string('qmats', "data/glove.6B.300d.quant.npy", "output")
-
-
 class EmbeddingCompressor(object):
 
     _TAU = 0.1
