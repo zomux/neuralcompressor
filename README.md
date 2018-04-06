@@ -38,8 +38,8 @@ numpy and tensorflow (I also have the pytorch implementation, which will be uplo
 
 ```
 ...
-[epoch198] trian_loss=12.82 train_maxp=0.98 valid_loss=12.50 valid_maxp=0.98 bps=618 *
-[epoch199] trian_loss=12.80 train_maxp=0.98 valid_loss=12.53 valid_maxp=0.98 bps=605
+[epoch198] train_loss=12.82 train_maxp=0.98 valid_loss=12.50 valid_maxp=0.98 bps=618 *
+[epoch199] train_loss=12.80 train_maxp=0.98 valid_loss=12.53 valid_maxp=0.98 bps=605
 Training Done
 ```
 
