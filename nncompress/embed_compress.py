@@ -13,11 +13,6 @@ if tuple(map(int, tf.__version__.split("."))) >= (1, 6, 0):
 else:
     from tensorflow.python.ops.rnn_cell_impl import _linear
 
-
-
-tf.flags.DEFINE_string('qmats', "data/glove.6B.300d.quant.npy", "output")
-
-
 class EmbeddingCompressor(object):
 
     _TAU = 1.0
