@@ -23,8 +23,8 @@ class CompressedEmbedding(Layer):
         assert isinstance(codebook, np.ndarray)
         assert isinstance(codes, np.ndarray)
 
-        self.codebook_np = codebook
-        self.codes_np = codes
+        self.codebook = K.constant(codebook, dtype='float32', name='codebook')
+        self.codes = K.constant(codes, dtype='int32', name='word_codes')
 
         self.input_length = input_length
         self.output_dim = codebook.shape[-1]
@@ -32,9 +32,6 @@ class CompressedEmbedding(Layer):
         super().__init__(**kwargs)
 
     def build(self, input_shape):
-        self.codebook = K.constant(self.codebook_np, dtype='float32', name='codebook')
-        self.codes = K.constant(self.codes_np, dtype='int32', name='word_codes')
-
         super().build(input_shape)
 
     def call(self, x):
