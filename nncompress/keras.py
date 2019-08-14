@@ -1,4 +1,7 @@
 import numpy as np
+
+import tensorflow as tf
+
 from keras import backend as K
 from keras.layers import Layer
 from keras.utils.generic_utils import to_list
@@ -22,6 +25,7 @@ class CompressedEmbedding(Layer):
 
         assert isinstance(codebook, np.ndarray)
         assert isinstance(codes, np.ndarray)
+        assert len(codebook.shape) == 3
 
         self.codebook = K.constant(codebook, dtype='float32', name='codebook')
         self.codes = K.constant(codes, dtype='int32', name='word_codes')
@@ -35,17 +39,19 @@ class CompressedEmbedding(Layer):
         super().build(input_shape)
 
     def call(self, x):
-        if K.dtype(x) != 'int32':
-            x = K.cast(x, 'int32')
+        x = tf.cast(x, tf.int32)
 
         # Get the indices into the codebooks
-        codes = K.gather(self.codes, x)
+        codes = tf.gather(self.codes, x)
+    
+        indices = tf.broadcast_to(tf.range(self.codebook.shape[0]), codes.shape)
+        indices = tf.stack([indices, codes], axis=-1)
 
         # Gather the required basis vectors for these words
-        vectors = K.gather(self.codebook, codes)
+        vectors = tf.gather_nd(self.codebook, indices)
 
         # Sum the basis vectors to obtain the embedding vectors
-        embeddings = K.sum(vectors, axis=-2)
+        embeddings = tf.reduce_sum(vectors, axis=-2)
 
         return embeddings
 
