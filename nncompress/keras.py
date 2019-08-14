@@ -26,6 +26,8 @@ class CompressedEmbedding(Layer):
         assert isinstance(codebook, np.ndarray)
         assert isinstance(codes, np.ndarray)
         assert len(codebook.shape) == 3
+        
+        self.codebook_count = codebook.shape[0]
 
         self.codebook = K.constant(codebook, dtype='float32', name='codebook')
         self.codes = K.constant(codes, dtype='int32', name='word_codes')
@@ -42,16 +44,16 @@ class CompressedEmbedding(Layer):
         x = tf.cast(x, tf.int32)
 
         # Get the indices into the codebooks
-        codes = tf.gather(self.codes, x)
+        codes = K.gather(self.codes, x)
     
-        indices = tf.broadcast_to(tf.range(self.codebook.shape[0]), codes.shape)
+        indices = tf.broadcast_to(tf.range(self.codebook_count), tf.shape(codes))
         indices = tf.stack([indices, codes], axis=-1)
 
         # Gather the required basis vectors for these words
         vectors = tf.gather_nd(self.codebook, indices)
 
         # Sum the basis vectors to obtain the embedding vectors
-        embeddings = tf.reduce_sum(vectors, axis=-2)
+        embeddings = K.sum(vectors, axis=-2)
 
         return embeddings
 
